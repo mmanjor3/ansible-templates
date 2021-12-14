@@ -1,0 +1,2 @@
+- import_playbook: vars.yml
+- import_playbook: tasks.yml
