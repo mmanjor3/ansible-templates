@@ -1,14 +1,12 @@
 roles
 ├── defaults
-│   └── main.yml
+│   └── ansible.cfg
 ├── files
 ├── README.md
 ├── tasks
 │   └── main.yml
 ├── templates
-├── tests
-│   ├── inventory
-│   ├── ansible.cfg
-│   └── test.yml
+├── inventory
+│   ├── hosts-dev
 └── vars
     └── main.yml
