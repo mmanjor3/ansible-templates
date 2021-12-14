@@ -1,0 +1,11 @@
+#The list of web servers
+[webservers]
+app1.site.com
+app2.site.com
+
+#The list of loadbalancers
+[loadbalancer]
+lb.site.com
+
+[local]
+control
