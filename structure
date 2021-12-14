@@ -8,6 +8,7 @@ roles
 ├── templates
 ├── tests
 │   ├── inventory
+│   ├── ansible.cfg
 │   └── test.yml
 └── vars
     └── main.yml
