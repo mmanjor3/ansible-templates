@@ -20,7 +20,7 @@
     ansible.builtin.template:
       synchronize:
         src: ./app
-        dest: /var/www/html/app
+        dest: {{path_to_app}}
   - name: Ensure that nginx is started
   handlers:
     - name: Restart Apache
