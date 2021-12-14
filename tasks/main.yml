@@ -1,0 +1,54 @@
+--
+- name: Install web servers
+  hosts: webservers
+  remote_user: root
+  
+  tasks:
+  - name: Install Apache
+    ansible.builtin.yum: 
+      name=httpd 
+      state=latest
+
+  tasks:
+  - name: Copy the Apache config file
+    ansible.builtin.template:
+      copy:
+        src: ./configuration-files/httpd.conf
+        dest: /etc/httpd.conf
+  tasks:
+  - name: Synchronize folders
+    ansible.builtin.template:
+      synchronize:
+        src: ./app
+        dest: /var/www/html/app
+  - name: Ensure that nginx is started
+  handlers:
+    - name: Restart Apache
+      service: 
+        name=https
+        status=restarted
+
+- name: Install loadbalancers
+  hosts: loadbalancers
+  remote_user: root
+
+  tasks:
+  - name: Install NGINX
+    ansible.builtin.yum:
+      name: nginx
+      state: latest
+      
+  tasks:
+  - name: Copy the Apache config file
+    ansible.builtin.template:
+      Copy:
+        src: ./configuration-files/config.cfg
+        dest: /etc/config.cfg
+  - name: Configure port number
+    lineinfile: 
+      path=/etc/config.cfg regexp='^port' line='port=80'
+    notify: Restart Apache
+  - name: Ensure that nginx is started
+    ansible.builtin.service:
+      name: Start NGINX
+      state: started
